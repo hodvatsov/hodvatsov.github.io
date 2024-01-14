@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Աստիճանի երկուական բարձրացում</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div id="logo">ՀՈԴՎԱԾՈՎ</div>
+        <div class="head-nav">
+            <a href="https://hodvatsov.github.io/">Ցանկ</a>
+            <a href="#">Ուղեցույց</a>
+            <a href="#">Կապ</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <h1>Աստիճանի երկուական բարձրացում</h1>
+            <div class="article-info">
+                <div class="info-block" style="grid-area: b1;">
+                    <p class="info-title">Պիտակներ</p>
+                    <p>                                                հանրահաշիվ,
+                                                թվի-աստիճան                        և երկուական-համակարգ
+                        </p>
+                </div>
+                <div class="info-block" style="grid-area: b2;">
+                    <p class="info-title">Դժվարություն </p>
+                    <p>?</p>
+                </div>
+                <div class="info-block" style="grid-area: b3;">
+                    <p class="info-title">IOI հաճախականություն </p>
+                    <p>? / 10</p>
+                </div>
+                <div class="info-block" style="grid-area: b4;">
+                    <p class="info-title">OI հաճախականություն </p>
+                    <p>? / 10</p>
+                </div>
+            </div>
+            <p>Աստիճանի երկուական բարձրացումը (անգլերեն՝ binary
+            exponentiation) հնարք է, որը թույլ է տալիս հաշվել <span
+            class="math inline">\(a\)</span> թվի <span
+            class="math inline">\(a^n\)</span> աստիճանը <span
+            class="math inline">\(O(\log n)\)</span> բազմապատկումներ
+            օգտագործելով (ի տարբերություն <span
+            class="math inline">\(O(n)\)</span> բազմապատկում օգտագործող
+            հասարակ տարբերակի)։</p>
+            <p>Նաև այս հնարքը օգտագործվում է բազմաթիվ այլ հանրահաշվական
+            խնդիրներում, քանի որ այն կիրառելի է ցանկացած
+            գործողությունների դեպքում, որոնք օժտված են <strong>ասոցիատիվ
+            (զուգորդական)</strong> հատկությամբ․ <span
+            class="math display">\[X \circ (Y \circ Z) = (X \circ Y)
+            \circ Z\]</span>որտեղ <span
+            class="math inline">\(\circ\)</span> -ով է նշանակված
+            գործողության պայմանական նշանը։ Նմանատիպ գործողություններ են
+            մնացորդով բազմապատկումը, մատրիցների բազմապատկումը և
+            այլն։</p>
+            <h2 id="ալգորիթմ">Ալգորիթմ</h2>
+            <p>Աստիճանի բարձրացման «միամիտ» ալգորիթմը կատարում է <span
+            class="math inline">\(a\)</span> թվով բազմապատկում <span
+            class="math inline">\(n - 1\)</span> անգամ <span
+            class="math inline">\(a^n = a \cdot a \cdot\ ...\ \cdot
+            a\)</span> թիվը ստանալու համար, ինչը կիրառելի չէ մեծ <span
+            class="math inline">\(n\)</span>-երի դեպքում։</p>
+            <p>Հայտնի է, որ <span class="math inline">\(a^{b + c} = a^b
+            \cdot a^c\)</span>։ Հետևաբար <span
+            class="math inline">\(a^{2b} = a^b \cdot a^b =
+            (a^b)^2\)</span>: Ներկայացվող ալգորիթմի հիմնական գաղափարը
+            այս հատկությունն օգտագործելով աշխատանքի բաժանումն է։
+            Ներկայացնենք <span class="math inline">\(n\)</span>-ը
+            երկուական համակարգում․ օրինակ՝ <span
+            class="math display">\[3^{13} = 3^{1101_2} = 3^{1000_2}
+            \cdot 3^{100_2} \cdot 3^{1_2} = 3^8 \cdot 3^4 \cdot
+            3^1\]</span> Հայտնի է, որ <span
+            class="math inline">\(n\)</span>-ը ունի ուղիղ <span
+            class="math inline">\(\lfloor \log_2 n \rfloor + 1\)</span>
+            թվանշաններ երկուական համակարգում։ Հետևում է, որ անհրաժեշտ է
+            կատարել ընդամենը <span class="math inline">\(O(\log
+            n)\)</span> բազմապատկում՝ օգտագործելով <span
+            class="math inline">\(a^1, a^2, a^4, ..., a^{2^{\lfloor \log
+            n \rfloor}}\)</span> աստիճանները։ Մնում է հաշվել այս
+            աստիճանները։ Նկատենք, որ տրված հաջարդականության մեջ
+            յուրաքանչյուրը իր նախորդի քառակուսին է․ օրինակ՝<span
+            class="math display">\[\begin{align}
+            3^1 &amp;= 3 \\
+            3^2 &amp;= \left(3^1\right)^2 = 3^2 = 9 \\
+            3^4 &amp;= \left(3^2\right)^2 = 9^2 = 81 \\
+            3^8 &amp;= \left(3^4\right)^2 = 81^2 = 6561
+            \end{align}\]</span> Այսինքն <span
+            class="math inline">\(3^{13}\)</span>-ի վերջնական պատասխանը
+            ստանալու համար պետք է բազմապատկել այս թվերից երեքը (բաց
+            թողնելով <span class="math inline">\(3^2\)</span>-ը քանի որ
+            <span class="math inline">\(n=13\)</span>-ում համապատասխան
+            բիթը <span class="math inline">\(0\)</span> է)․ <span
+            class="math inline">\(3^{13} = 6561 \cdot 81 \cdot 3 =
+            1594323\)</span>:</p>
+            <p>Վերջնական ալգորիթմի բարդությունը <span
+            class="math inline">\(O(\log n)\)</span> է, քանի որ հաշվում
+            ենք <span class="math inline">\(\log n\)</span> հատ <span
+            class="math inline">\(a\)</span>-ի աստիճաններ, և կատարում
+            ամենաշատը <span class="math inline">\(\log n\)</span>
+            բազմապատկում։</p>
+            <p>Նույն մտքից հետևում է հետևյալ ռեկուրսիվ ներկայացումը․
+            <span class="math display">\[a^n = \begin{cases}
+            1 &amp;\text{եթե } n = 0, \\
+            \left(a^{\frac{n}{2}}\right)^2 &amp;\text{եթե } n &gt; 0
+            \text{ և } n \text{-ը զույգ է},\\
+            \left(a^{\frac{n - 1}{2}}\right)^2 \cdot a &amp;\text{եթե }
+            n &gt; 0 \text{ և } n \text{-ը կենտ է։}\\
+            \end{cases}\]</span></p>
+            <h2 id="իրականացում">Իրականացում</h2>
+            <p>Ռեկուրսիվ ներկայացման ուղղակի գրառումը․</p>
+            <div class="sourceCode" id="cb1"><pre
+            class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> binpow<span class="op">(</span><span class="dt">long</span> <span class="dt">long</span> a<span class="op">,</span> <span class="dt">long</span> <span class="dt">long</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>b <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> res <span class="op">=</span> binpow<span class="op">(</span>a<span class="op">,</span> b <span class="op">/</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>b <span class="op">%</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> res <span class="op">*</span> res <span class="op">*</span> a<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> res <span class="op">*</span> res<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <p>Ստորև ներկայացված տարբերակը կատարում է նույնը առանց
+            ռեկուրսիվ կանչերի։ Թվի աստիճանները հաշվարկվում են ցիկլի մեջ
+            և բազմապատկվում պատասխանին։ Չնայած երկու տարբերակների
+            բարդությունները նույնն են, երկրորդ տարբերակը կիրառելիս չնչին
+            արագ է ռեկուրսիվ կանչեր չօգտագործելու շնորհիվ։</p>
+            <div class="sourceCode" id="cb2"><pre
+            class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> binpow<span class="op">(</span><span class="dt">long</span> <span class="dt">long</span> a<span class="op">,</span> <span class="dt">long</span> <span class="dt">long</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> res <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>b <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>b <span class="op">&amp;</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            res <span class="op">=</span> res <span class="op">*</span> a<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> a <span class="op">*</span> a<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        b <span class="op">&gt;&gt;=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <h2 id="հղումներ">Հղումներ</h2>
+            <ul>
+            <li><a
+            href="https://cp-algorithms.com/algebra/binary-exp.html">cp-agorithms
+            “Binary exponentation”</a></li>
+            <li><a href="https://e-maxx.ru/algo/binary_pow">e-maxx
+            “Бинарное возведение в степень”</a></li>
+            </ul>
+            <h2 id="խնդիրներ">Խնդիրներ</h2>
+            <p><em>շուտով</em></p>
+            <div class="info-block" id="contr-block">
+                <p class="info-title">Խմբագրողներ</h3>
+                <p>                    <a class="ctrb-a" href="https://codeforces.com/profile/erankyun">Համլետ
+                                       Պետրոսյան</a>
+                    </p>
+            </div>
+        </div>
+    </div>
+    <div id="sticky-nav" class="menu">
+        <h3>Բովանդակություն</h3>
+        <ul>
+        <li><a href="#ալգորիթմ" id="toc-ալգորիթմ">Ալգորիթմ</a></li>
+        <li><a href="#իրականացում"
+        id="toc-իրականացում">Իրականացում</a></li>
+        <li><a href="#հղումներ" id="toc-հղումներ">Հղումներ</a></li>
+        <li><a href="#խնդիրներ" id="toc-խնդիրներ">Խնդիրներ</a></li>
+        </ul>
+    </div>
+    <div class="footer">
+        <div id="logo">ՀՈԴՎԱԾՈՎ</div>
+    </div>
+    <script src="../style/stickynav.js"></script>
+</body>
+
+</html>
