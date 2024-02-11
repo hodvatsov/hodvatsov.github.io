@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Էվկլիդեսի ալգորիթմ</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div id="logo">ՀՈԴՎԱԾՈՎ</div>
+        <div class="head-nav">
+            <a href="https://hodvatsov.github.io/">Ցանկ</a>
+            <a href="#">Ուղեցույց</a>
+            <a href="#">Կապ</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <h1>Էվկլիդեսի ալգորիթմ</h1>
+            <div class="article-info">
+                <div class="info-block" style="grid-area: b1;">
+                    <p class="info-title">Պիտակներ</p>
+                    <p>                                                հանրահաշիվ,
+                                                ամբողջ-թվեր                        և ամենամեծ-ընդհանուր-բաժանարար
+                        </p>
+                </div>
+                <div class="info-block" style="grid-area: b2;">
+                    <p class="info-title">Դժվարություն </p>
+                    <p>?</p>
+                </div>
+                <div class="info-block" style="grid-area: b3;">
+                    <p class="info-title">IOI հաճախականություն </p>
+                    <p>? / 10</p>
+                </div>
+                <div class="info-block" style="grid-area: b4;">
+                    <p class="info-title">OI հաճախականություն </p>
+                    <p>? / 10</p>
+                </div>
+            </div>
+            <h2 id="ալգորիթմ">Ալգորիթմ</h2>
+            <p>Ներկայացվելիք ալգորիթմում օգտագործված տեսությունը
+            ներկայացված է <a href="./Ամբողջ%20թվեր.html">ամբողջ թվեր</a>
+            հոդվածում։</p>
+            <p>Հարկավոր է գտնել <span class="math inline">\(a\)</span> և
+            <span class="math inline">\(b\)</span> բնական թվերի ամենամեծ
+            ընդհանուր բաժանարարը։ Հայտնի է <span
+            class="math inline">\(\gcd(a, b) = \gcd(b,\ a\ \text{mod}\
+            b))\)</span>, եթե <span class="math inline">\(a\)</span> և
+            <span class="math inline">\(b\)</span> թվերը երկուսն էլ ոչ
+            զրոական են։ Եթե <span class="math inline">\(a\)</span> և
+            <span class="math inline">\(b\)</span> թվերից որևէ մեկը 0 է,
+            քանի որ 0-ն բոլոր ամբողջ թվերի վրա բաժանելիս ստացվում է 0
+            մնացորդ (համարում ենք, որ 0-ն բաժանվում է բոլոր ամբողջ
+            թվերին), կվերադարձնենք ոչ զրոական անդամը։ <span
+            class="math inline">\(\gcd(0, 0)\)</span>-ն անիմաստ է մեզ
+            համար, քանի որ բոլոր ամբողջ թվերը ընդհանուր բաժանարար են
+            հանդիսանում։ Հնարավորինս կխուսափենք այդ
+            արտահայտությունից։</p>
+            <p>Այս ամենը հաշվի առնելով, ձևակերպենք ալգորիթմ։</p>
+            <ol type="1">
+            <li>Ստուգենք, եթե <span class="math inline">\(b =
+            0\)</span>, ապա վերադարձնենք <span
+            class="math inline">\(a\)</span>-ն,</li>
+            <li>հակառակ դեպքում հաշվենք և վերադարձնենք <span
+            class="math inline">\(\gcd(b,\ a\ \text{mod}\
+            b))\)</span>-ն։</li>
+            </ol>
+            <p>Եթե փորձենք հաշվել <span class="math inline">\(\gcd(0,
+            0)\)</span>-ն, ապա ալգորիթմը կվերադարձնի <span
+            class="math inline">\(0\)</span>: <span
+            class="math inline">\(\gcd(a, 0)\)</span>-ն կվերադարձնի
+            <span class="math inline">\(a\)</span>, իսկ <span
+            class="math inline">\(\gcd(0, b)\)</span>-ն կկանչի <span
+            class="math inline">\(\gcd(b, 0)\)</span>, որն էլ
+            կվերադարձնի <span class="math inline">\(b\)</span>:</p>
+            <h2 id="իրականացում">Իրականացում</h2>
+            <div class="sourceCode" id="cb1"><pre
+            class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd <span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>b <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> gcd <span class="op">(</span>b<span class="op">,</span> a <span class="op">%</span> b<span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <p>Օգտագործելով C++ լեզվի տերնար օպերատորը, կարող ենք
+            գրառումը դարձնել մեկ տող․</p>
+            <div class="sourceCode" id="cb2"><pre
+            class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd <span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> b <span class="op">?</span> gcd <span class="op">(</span>b<span class="op">,</span> a <span class="op">%</span> b<span class="op">)</span> <span class="op">:</span> a<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <p>Նաև նույն ալգորիթմը կարող ենք գրառել առանց անդրադարձ
+            (ռեկուրսիվ) կանչերի․</p>
+            <div class="sourceCode" id="cb3"><pre
+            class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd <span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        a <span class="op">%=</span> b<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        swap<span class="op">(</span>a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <p>Հարկ է նշել, որ C++17 վերսիայից
+            <code>&lt;numeric&gt;</code> գրադարանում իրականացված է
+            <code>gcd</code> <a
+            href="https://en.cppreference.com/w/cpp/numeric/gcd">ստանդարտ
+            ֆունկցիան</a>: Ավելի հին վերսիաներում կա <code>__gcd</code>
+            ֆունկցիա ներկայացված GNU GCC կոմպիլյատորներում (բացակայում է
+            Microsoft C++ կոմպիլյատորներում)։ Մինչ <code>gcd</code>
+            ստանդարտ ֆունկցիան գործում է այնպես ինչպես մեր ներկայացրած
+            ալգորիթմը, <code>__gcd</code>-ն կարող է խնդիրներ առաջացնել
+            զրոական պարամետրով կանչերի դեպքում։</p>
+            <h2 id="արագագործությունը">Արագագործությունը</h2>
+            <h4 id="հաշվարկի-տարբերակ-1">Հաշվարկի տարբերակ 1</h4>
+            <p>Նկատենք, որ եթե <span class="math inline">\(a \geq
+            b\)</span>, ապա <span class="math inline">\((a\ \text{mod}\
+            b)\)</span>-ը ամենաքիչը երկու անգամ փոքր է <span
+            class="math inline">\(a\)</span>-ից: Եթե <span
+            class="math inline">\(a \geq b\)</span>, ապա <span
+            class="math inline">\(a = kb + (a\ \text{mod}\ b),\ k \in
+            \mathbb{N}\)</span>, քանի որ <span class="math inline">\(kb
+            \geq b &gt; (a\ \text{mod}\ b)\)</span>, ստանում ենք <span
+            class="math inline">\(a = kb + (a\ \text{mod}\ b) &gt; (a\
+            \text{mod}\ b) + (a\ \text{mod}\ b) = 2(a\ \text{mod}\
+            b)\)</span>: Որից էլ հետևում է, որ <span
+            class="math inline">\((a\ \text{mod}\ b) &lt;
+            \frac{a}{2}\)</span>:</p>
+            <p>Նկատենք, որ սկսած երկրորդ կանչից <span
+            class="math inline">\(a &gt; b\)</span>։ Այսինքն ամեն
+            <code>gcd</code>-ի կանչին պարամետրերից մեծը փոքրանում է
+            ամենաքիչը երկու անգամ։ Նկատելով, որ երկրորդ կանչի
+            պարամետրերը փոքր են առաջին կանչի փոքրագույն պարամետրից կարող
+            ենք պնդել, որ երկրորդ կանչից հետո արագագործությունը <span
+            class="math inline">\(O(2\log\min(a, b)) = O(\log\min(a,
+            b))\)</span> է, որտեղ <span class="math inline">\(a\)</span>
+            և <span class="math inline">\(b\)</span> թվերը առաջին կանչի
+            պարամետրերն են։ Հարկավոր է գումարել առաջին կանչի
+            արագագործությունը նույնպես, որը ըստ ալգորիթմի կլինի <span
+            class="math inline">\(O(1)\)</span>։ Ընդհանուր կստանանք
+            <span class="math inline">\(O(1) + O(\log\min(a, b)) =
+            O(\log\min(a, b))\)</span>:</p>
+            <h4 id="հաշվարկի-տարբերակ-2">Հաշվարկի տարբերակ 2</h4>
+            <p>Ավելի լավ գնահատելու համար օգտվենք <a
+            href="https://en.wikipedia.org/wiki/Lam%C3%A9%27s_theorem">Լամեի
+            թեորեմից</a>: Ըստ Լամեի, <span
+            class="math inline">\(u\)</span> և <span
+            class="math inline">\(v\)</span> սկզբնական արժեքներով
+            Էվկլիդեսի ալգորիթմում բաժանումների քանակը քիչ է 5 անգամ
+            <span class="math inline">\(\min(u, v)\)</span>-ի տասական
+            ներկայացման նիշերի քանակից։ Այստեղ թեորեմի ապացույց չի
+            ներկայացվի։</p>
+            <p>Հետաքրքիր է, որ կապ է հաստատվում Էվկլիդեսի ալգորիթմի և
+            Ֆիբոնաչիի թվերի միջև (ներկայացված են <a href="#">նշանավոր
+            հաջորդականություններ</a> հոդվածում)։ Կարևոր դիտարկում է, որ
+            <span class="math inline">\(a &gt; b \geq 1\)</span> և <span
+            class="math inline">\(b &lt; F_n\)</span> դեպքում Էվկլիդեսի
+            ալգորիթմը ամենաշատը կատարում է <span class="math inline">\(n
+            - 2\)</span> կանչեր։ Ուղիղ <span class="math inline">\(n -
+            2\)</span> կանչ է կատարվում, երբ <span
+            class="math inline">\(a = F_n\)</span> և <span
+            class="math inline">\(b = F_{n - 1}\)</span>։</p>
+            <h2 id="ամենափոքր-ընդհանուր-բազմապատիկ">Ամենափոքր ընդհանուր
+            բազմապատիկ</h2>
+            <p><a href="./Ամբողջ%20թվեր.html">Ամբողջ թվեր</a> հոդվածից
+            հայտնի է, որ <span class="math display">\[\text{lcm}(a, b) =
+            \frac{a \cdot b}{\gcd(a, b)}:\]</span>Այս հատկությունը թույլ
+            է տալիս հաշվել թվերի ամենափոքր ընդհանուր բազմապատիկը
+            օգտագործելով արդեն իսկ իրականացված ամենամեծ ընդհանուր
+            բաժանարարի ֆունկցիան․</p>
+            <div class="sourceCode" id="cb4"><pre
+            class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lcm <span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">/</span> gcd<span class="op">(</span>a<span class="op">,</span> b<span class="op">)</span> <span class="op">*</span> b<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <p>Առաջինը կատարվում է թվերի բաժանում, քանի <span
+            class="math inline">\(a \cdot b\)</span>-ն կարող էր դուրս
+            գալ հասանելի թվերի ինտերվալից (այս դեպքում
+            <code>int</code>-ում ներկայացվող թվերի ինտերվալից)։</p>
+            <p>C++17 վերսիայից սկսած կա նաև համապատասխան
+            <code>lcm</code> ստանդարտ ֆունկցիան։</p>
+            <h2 id="երկուական-հաշվարկ">Երկուական հաշվարկ</h2>
+            <p>Ճիշտ է <code>gcd</code> ֆունկցիան բավականին արագ է, բայց
+            հատուկենտ դեպքերում հարկավոր է լինում այն էլ ավելի արագ
+            դարձնել։ Օպտիմիզացիայի առարկա կարող է հանդիսանալ մնացորդ
+            հաշվելու օպերատորը, որը թեև համարում ենք, որ կատարվում է
+            <span class="math inline">\(O(1)\)</span> ժամանակում, բայց
+            ավելի դանդաղ է քան գումարման, հանման և այլ երկուական
+            գործողությունները։ Պարզվում է, որ հնարավոր է ձևակերպել
+            ալգորիթմ, որը չի օգտագործում մնացորդի օպերատորը:</p>
+            <ul>
+            <li>Եթե երկու թվերն էլ զույգ են, ապա կարող ենք երկուսը դուրս
+            հանել <span class="math inline">\(\gcd\)</span>-ի
+            ֆունկցիայից. <span class="math inline">\(\gcd(2a,
+            2b)=2\gcd(a, b)\)</span>:</li>
+            <li>Եթե թվերից միայն մեկն է զույգ, ապա նրանց ընդհանուր
+            բաժանարարը զույգ չէ, և կարող ենք ազատվել երկուսից․ <span
+            class="math inline">\(\gcd(2a, b) = \gcd(a,
+            b)\)</span>:</li>
+            <li>Եթե երկու թվերն էլ կենտ են, կարող ենք մեկ թվից հանել
+            մյուսը և հաշվել ամենամեծ ընդհանուր բաժանարարը ավելի փոքր
+            թվերի համար․ <span class="math inline">\(\gcd(a, b) =
+            \gcd(b, a - b)\)</span>:</li>
+            </ul>
+            <p>Օգտագործելով այս դատողությունները և որոշ GNU GCC
+            կոմպիլյատորներում ներկայացված երկուական ֆունկցիաներ՝
+            իրականացնենք․</p>
+            <div class="sourceCode" id="cb5"><pre
+            class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>a <span class="op">||</span> <span class="op">!</span>b<span class="op">)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a <span class="op">|</span> b<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> shift <span class="op">=</span> <span class="fu">__builtin_ctz</span><span class="op">(</span>a <span class="op">|</span> b<span class="op">);</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">&gt;&gt;=</span> <span class="fu">__builtin_ctz</span><span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        b <span class="op">&gt;&gt;=</span> <span class="fu">__builtin_ctz</span><span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>a <span class="op">&gt;</span> b<span class="op">)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            swap<span class="op">(</span>a<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        b <span class="op">-=</span> a<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>b<span class="op">);</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">&lt;&lt;</span> shift<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <p><code>__builtin_ctz</code> ֆունկցիան վերադարձնում է տրված
+            թվի երկուական գրառման մեջ աջից անընդհատ զրոների քանակը։
+            Օրինակ՝ <code>__builtin_ctz(20)</code>-ը կվերադարձնի 2, քանի
+            որ <span class="math inline">\(20 = (10100)_2\)</span>, իսկ
+            <code>__builtin_ctz(21)</code>-ը՝ 0, քանի որ <span
+            class="math inline">\(21 = (10101)_2\)</span>:</p>
+            <h2 id="հղումներ">Հղումներ</h2>
+            <ul>
+            <li><a
+            href="https://cp-algorithms.com/algebra/euclid-algorithm.html">Euclidean
+            algorithm for computing the greatest common divisor</a></li>
+            <li><a
+            href="https://e-maxx.ru/algo/euclid_algorithm">Алгоритм
+            Евклида нахождения НОД (наибольшего общего
+            делителя)</a></li>
+            </ul>
+            <h2 id="խնդիրներ">Խնդիրներ</h2>
+            <p>շուտով</p>
+            <div class="info-block" id="contr-block">
+                <p class="info-title">Խմբագրողներ</h3>
+                <p>                    <a href="https://codeforces.com/profile/erankyun">Համլետ
+                                       Պետրոսյան</a>
+                    </p>
+            </div>
+        </div>
+    </div>
+    <div id="sticky-nav" class="menu">
+        <h3>Բովանդակություն</h3>
+        <ul>
+        <li><a href="#ալգորիթմ" id="toc-ալգորիթմ">Ալգորիթմ</a></li>
+        <li><a href="#իրականացում"
+        id="toc-իրականացում">Իրականացում</a></li>
+        <li><a href="#արագագործությունը"
+        id="toc-արագագործությունը">Արագագործությունը</a></li>
+        <li><a href="#ամենափոքր-ընդհանուր-բազմապատիկ"
+        id="toc-ամենափոքր-ընդհանուր-բազմապատիկ">Ամենափոքր ընդհանուր
+        բազմապատիկ</a></li>
+        <li><a href="#երկուական-հաշվարկ"
+        id="toc-երկուական-հաշվարկ">Երկուական հաշվարկ</a></li>
+        <li><a href="#հղումներ" id="toc-հղումներ">Հղումներ</a></li>
+        <li><a href="#խնդիրներ" id="toc-խնդիրներ">Խնդիրներ</a></li>
+        </ul>
+    </div>
+    <div class="footer">
+        <div id="logo">ՀՈԴՎԱԾՈՎ</div>
+    </div>
+    <script src="../style/stickynav.js"></script>
+</body>
+
+</html>
